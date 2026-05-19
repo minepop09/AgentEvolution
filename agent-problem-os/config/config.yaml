@@ -1,0 +1,38 @@
+# Agent Problem OS 配置
+
+# 知识库路径
+knowledge_base:
+  path: ~/.hermes/knowledge-base/
+  # 领域分类
+  domains:
+    - 技术类
+    - 产品类
+    - 分析类
+    - 创意类
+
+# 问题处理OS配置
+problem_os:
+  # 置信度阈值
+  confidence_threshold: 80
+  
+  # 工具审核配置
+  tool_audit:
+    max_candidates: 2  # 最多审核前N个候选
+    min_score: 0.5      # 最低评分阈值
+  
+  # 复杂度等级
+  complexity_levels:
+    - 简单
+    - 中等
+    - 复杂
+    - 超复杂
+
+# Todo计划配置
+todo:
+  persist: false        # 是否持久化到文件
+  auto_save: true       # 自动保存
+
+# 进化配置
+evolution:
+  enabled: false       # 是否启用进化
+  skill_weights_path: ~/.hermes/agent-problem-os/skill_weights.json
