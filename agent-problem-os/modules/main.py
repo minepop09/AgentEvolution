@@ -22,6 +22,7 @@ from modules.analysis import ProblemAnalysis
 from modules.tool_audit import ToolAuditor
 from modules.tool_install import ToolInstaller
 from modules.todo import TodoPlanner, TaskStatus
+from modules.evolution import FeedbackEvolution
 
 
 def run_problem_os(question: str) -> dict:

@@ -34,5 +34,5 @@ todo:
 
 # 进化配置
 evolution:
-  enabled: false       # 是否启用进化
-  skill_weights_path: ~/.hermes/agent-problem-os/skill_weights.json
+  enabled: true        # 是否启用进化
+  data_path: ~/.hermes/agent-problem-os/evolution_data.json  # 进化数据存储路径
