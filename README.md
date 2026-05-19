@@ -21,13 +21,13 @@ AgentEvolution/
 ├── agent-problem-os/        # 核心代码
 │   ├── modules/             # 7个模块实现
 │   │   ├── main.py          # 入口（整合全流程）
-│   │   ├── preprocess.py    # ✅ 01问题预处理
-│   │   ├── cognition.py     # ✅ 02问题认知（三层探测）
-│   │   ├── kb_store.py      # ✅ 03知识库存储
-│   │   ├── analysis.py       # ✅ 04问题分析
-│   │   ├── tool_audit.py    # ✅ 05工具审核（SlowMist）
-│   │   ├── tool_install.py   # ✅ 06工具安装
-│   │   └── todo.py           # ✅ 07Todo计划
+│   │   ├── preprocess.py    # 01问题预处理
+│   │   ├── cognition.py     # 02问题认知（三层探测）
+│   │   ├── kb_store.py      # 03知识库存储
+│   │   ├── analysis.py       # 04问题分析
+│   │   ├── tool_audit.py    # 05工具审核（SlowMist）
+│   │   ├── tool_install.py   # 06工具安装
+│   │   └── todo.py           # 07Todo计划
 │   ├── soul/                # Agent人格+方法论
 │   │   ├── personality.md
 │   │   └── methodology.md
