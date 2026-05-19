@@ -19,15 +19,16 @@ AgentEvolution/
 │   ├── 06-完整流程图.md
 │   └── ...
 ├── agent-problem-os/        # 核心代码
-│   ├── modules/             # 7个模块实现
+│   ├── modules/             # 8个模块实现
 │   │   ├── main.py          # 入口（整合全流程）
 │   │   ├── preprocess.py    # 01问题预处理
 │   │   ├── cognition.py     # 02问题认知（三层探测）
 │   │   ├── kb_store.py      # 03知识库存储
-│   │   ├── analysis.py       # 04问题分析
+│   │   ├── analysis.py      # 04问题分析
 │   │   ├── tool_audit.py    # 05工具审核（SlowMist）
-│   │   ├── tool_install.py   # 06工具安装
-│   │   └── todo.py           # 07Todo计划
+│   │   ├── tool_install.py  # 06工具安装
+│   │   ├── todo.py          # 07Todo计划
+│   │   └── evolution.py     # 08反馈进化
 │   ├── soul/                # Agent人格+方法论
 │   │   ├── personality.md
 │   │   └── methodology.md
@@ -69,6 +70,7 @@ python3 modules/main.py "你的问题"
 | 05-工具审核 | ✅ 完成 | SlowMist安全审计（模拟），评分前2候选 |
 | 06-工具安装 | ✅ 完成 | 安装通过审核的工具，支持备选 |
 | 07-Todo计划 | ✅ 完成 | 任务状态管理，依赖关系处理 |
+| 08-反馈进化 | ✅ 完成 | 根据评分自动调整方法论+工具权重 |
 
 ## 完整流程
 
@@ -101,8 +103,42 @@ python3 modules/main.py "你的问题"
        ↓
 ┌──────────────┐
 │ 07Todo计划    │ → 执行任务计划
+└──────┬───────┘
+       ↓
+┌──────────────┐
+│ 08反馈进化    │ → 评分→分析→调整权重（下次更准）
 └──────────────┘
 ```
+
+## 反馈进化机制
+
+问题处理完后可对结果打分（1-5星），系统自动分析哪些**方法论+工具组合**效果好，持续调整权重：
+
+```python
+from modules.evolution import FeedbackEvolution
+
+evo = FeedbackEvolution()
+
+# 记录处理结果
+evo.record(
+    question="如何优化Python性能？",
+    domain="技术类",
+    methodology="性能剖析法",
+    tools_selected=["py-spy", "perf"],
+    tool_audit_passed=True
+)
+
+# 处理完打分
+evo.rate(record_id=1, stars=5, notes="方法论很准")
+
+# 分析并更新权重
+evo.apply_weights(evo.adapt())
+
+# 查看进化报告
+print(evo.get_report())
+```
+
+进化数据持久化在 `~/.hermes/agent-problem-os/evolution_data.json`，不修改代码本身。
 
 ## 文档索引
 
